@@ -44,10 +44,12 @@ These attributes pertain to usage of behavior of credit card users for a period 
   - **TENURE** : Tenure of credit card service for user
 </details>
 
+
 ### Observations from EDA
 
-**Significant Behavioral Observation:**
-![Pyode]()
+**Notable Behavioral Observation:**
+
+![](./images/important_obs.png)
 
 - Those who have high freequency of purchases made the most purchases regardless of the balance.
 - Those who have the high purchases also have the high one off purchases.
@@ -68,10 +70,38 @@ These attributes pertain to usage of behavior of credit card users for a period 
 - In fact, these customer also have a higher purchase transactions compared to others.
 - They also generally have a higher percentage of full payments made, and the minimum payments made by them is also generally high.
 
-### Data Cleaning and imputation
 
 ### Modelling Workflow
-1. A KMeans experiment was conducted to get the optimal value of k.
+1. A KMeans experiment was conducted to get the optimal value of k. It was determined that there are 3-7 clusters in the data. Furthermore, this produced an unsteady elbow plot from which it was difficult to determine optimal K. 
 2. An autoencoder was build with pytorch for dimensionality reduction.
+
+![](./images/aenc_train.png)
+
 3. Agglomerative clustering was done in the encoded dataset to reconfirm k.
+
+![](./images/dendrogram.png)
+
 4. Finally, a KMeans model was built with optmal k value, and with the encoded data to get final predictions.
+
+![](./images/elbowplot.png)
+
+The reason to choose k = 3 and not 4 is because, the intercluster distances become very small. 
+
+### Visualizing the clusters with Yellobrics:
+
+![](./images/cluster_viz.png)
+
+### Cluster Summary and Inference:
+
+![](./images/cluster_summry.png)
+
+- The 3 clusters of customers are distinct.
+- The first group are customers who maintain low balance and spend less. They often do not make many transactions, and in the case that they do, they do not spend a lot.
+- The second group of customers maintain a reasonably high balance. But they do not make many transactions with their card. Instead, they opt to take cash advances and probably only use cash for transactions. This group does not use their credit card for any transaction.
+- The third lot is a minority who both maintain high balance, and also make many high value purchases with their card, and spend a lot in general. They do not take much cash advances probably because their spend from debit and only use credit card for their purchases.
+This result indeed reflects many intermediate observations presented in the sections above.
+
+### Next Steps:
+
+The final model was a KMeans Clustering algorithm with a silhoutte score of 0.56 which is not very unnacceptable. Having more clusters might not be the best idea for now as the intra-cluster distances will be very small, thereby producing an unstable decision boundary in production. However, as more data is gathered, we could have more distinct and precise clusters.
+For the sake of creating targeted marketing campaigns for different customers, the current result can serve as a starting point. 
