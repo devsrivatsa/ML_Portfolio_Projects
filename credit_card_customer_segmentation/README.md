@@ -3,6 +3,9 @@
 
 The objective of this project is to develop a clustering model to segment customers based on various behavioral attributes, in order to formulate a marketing strategy.
 These attributes pertain to usage of behavior of credit card users for a period of 6 months 
+
+The dataset can be found here: https://www.kaggle.com/datasets/arjunbhasin2013/ccdata or use API command: [kaggle datasets download -d arjunbhasin2013/ccdata]
+
 <details>
   <summary> There are 18 attributes for 9000 customers. Following is the data dictionary for this dataset: </summary>
   
