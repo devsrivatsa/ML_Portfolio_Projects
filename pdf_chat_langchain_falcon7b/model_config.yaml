@@ -1,0 +1,8 @@
+base_model:
+  repo_id: "tiiuae/falcon-7b-instruct"
+  max_length: 1500
+  do_sample: True
+  device_map: "cpu"
+embeddings_model_name: "all-MiniLM-L6-v2"
+documents_location: "./pdfs/"
+vec_store_name: "faiss_index"
